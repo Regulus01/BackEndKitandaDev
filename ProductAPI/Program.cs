@@ -1,4 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using ProductAPI.Repository.Common;
+using System.Data.Common;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Conexao com banco
+var connectionString = builder.Configuration.GetConnectionString("App");
+DbConnection dbConnection = new NpgsqlConnection(connectionString);
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseNpgsql(dbConnection, assembly =>
+    assembly.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+});
 
 // Add services to the container.
 
