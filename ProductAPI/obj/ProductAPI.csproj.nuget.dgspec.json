@@ -4,14 +4,14 @@
     "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj": {}
   },
   "projects": {
-    "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj": {
+    "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj",
-        "projectName": "ProductAPI",
-        "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj",
+        "projectUniqueName": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\jsous\\.nuget\\packages\\",
-        "outputPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\obj\\",
+        "outputPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jsous\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,21 +39,146 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj",
+        "projectName": "ProductAPI",
+        "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\ProductAPI.csproj",
+        "packagesPath": "C:\\Users\\jsous\\.nuget\\packages\\",
+        "outputPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\ProductAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jsous\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj": {
+                "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
             },
-            "Microsoft.EntityFrameworkCore.Relational": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[6.0.9, )"
+              "version": "[6.0.7, )"
             },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\jsous\\.nuget\\packages\\",
+        "outputPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jsous\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\Domain.csproj": {
+                "projectPath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -71,10 +196,6 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[6.0.7, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -88,9 +209,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
