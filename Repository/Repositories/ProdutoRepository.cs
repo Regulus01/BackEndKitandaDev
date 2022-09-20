@@ -25,6 +25,7 @@ namespace Repository.Repositories
                 List<Produto> produtos = await _context.Produtos
                                                 .Include(x => x.Categoria)
                                                 .Include(y => y.Imagens)
+                                                .OrderBy(x => x.Quantidade)
                                                 .ToListAsync();
 
                 return _mapper.Map <List<ProdutoGridViewModel>>(produtos);
