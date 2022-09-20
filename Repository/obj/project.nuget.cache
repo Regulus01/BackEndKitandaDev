@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "JDytv6V2THUueELVn7oeUKjwg4eIvXlZ6lGkf9SzzVfG3vdBKjl82W2GAjMN8toQnyeSvxyQ8p1ik/2Xetk0ng==",
+  "dgSpecHash": "fAcQO0stBnUwWla9J40a0GYQTZulh6OeVRDHulXq5x0RaVhHHKQC6V9qNDW9u1f6NjwYJ7XgeCN7FMNISuxYuA==",
   "success": true,
   "projectFilePath": "G:\\My Drive\\Projeto Eng Software\\KitandaBackEnd\\BackEndKitandaDev\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jsous\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\jsous\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\jsous\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\jsous\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "C:\\Users\\jsous\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.9\\microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",
     "C:\\Users\\jsous\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.9\\microsoft.entityframeworkcore.analyzers.6.0.9.nupkg.sha512",

@@ -1,0 +1,9 @@
+﻿using ProductAPI.Data.ViewModels;
+
+namespace Interface.Repository
+{
+    public interface IProdutoRepository
+    {
+        Task<IEnumerable<ProdutoGridViewModel>> GetAll();
+    }
+}

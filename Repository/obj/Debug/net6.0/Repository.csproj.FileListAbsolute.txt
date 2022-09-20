@@ -15,3 +15,5 @@ G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\obj
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\obj\Debug\net6.0\Repository.pdb
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\obj\Debug\net6.0\Repository.genruntimeconfig.cache
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\obj\Debug\net6.0\ref\Repository.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\bin\Debug\net6.0\Interface.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\Repository\bin\Debug\net6.0\Interface.pdb

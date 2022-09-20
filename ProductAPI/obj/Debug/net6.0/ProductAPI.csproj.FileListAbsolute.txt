@@ -38,3 +38,11 @@ G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\obj\Debug\net6.0\ProductAPI.MvcApplicationPartsAssemblyInfo.cs
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\AutoMapper.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Interface.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Interface.pdb
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
