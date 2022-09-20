@@ -21,8 +21,8 @@ namespace Repository.Maps
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(x => x.Codigo)
-                .HasColumnName("codigo")
+            builder.Property(x => x.Quantidade)
+                .HasColumnName("quantidade")
                 .HasMaxLength(50)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
