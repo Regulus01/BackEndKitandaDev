@@ -26,92 +26,108 @@ namespace Repository.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("Id");
 
                     b.Property<DateTime>("Criacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Criacao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nome");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoriaProdutos");
+                    b.ToTable("CategoriaProduto", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.ImagemProduto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("Id");
 
                     b.Property<DateTime>("Criacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Criacao");
 
-                    b.Property<int>("IdProduto")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("IdProduto")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id_Produto");
 
                     b.Property<string>("LinkImagem")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("ImagemUrl");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("ProdutoId")
-                        .HasColumnType("uuid");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nome");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProdutoId");
+                    b.HasIndex("IdProduto");
 
-                    b.ToTable("ImagemProduto");
+                    b.ToTable("ImagemProduto", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Produto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CategoriaId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("Id");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("codigo");
 
                     b.Property<DateTime>("Criacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Criacao");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("descricao");
 
-                    b.Property<int>("IdCategoria")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("IdCategoria")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id_categoria");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nome");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("numeric");
+                        .HasPrecision(17, 2)
+                        .HasColumnType("numeric(17,2)")
+                        .HasColumnName("preco");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaId");
+                    b.HasIndex("IdCategoria");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produto", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.ImagemProduto", b =>
                 {
                     b.HasOne("Domain.Entities.Produto", "Produto")
                         .WithMany("Imagens")
-                        .HasForeignKey("ProdutoId")
+                        .HasForeignKey("IdProduto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -122,7 +138,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Domain.Entities.CategoriaProduto", "Categoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId")
+                        .HasForeignKey("IdCategoria")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

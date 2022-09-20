@@ -2,18 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace Repository.Maps
 {
-    public class ProdutoMap : BaseMap<Produto>
+    public class ProdutoMap : IEntityTypeConfiguration<Produto>
     {
-        public ProdutoMap(string tableNome) : base("tb_produto")
+        public void Configure(EntityTypeBuilder<Produto> builder)
         {
-        }
+            builder.Property(x => x.Id)
+              .HasColumnName("Id")
+              .ValueGeneratedOnAdd();
 
-        public override void Configure(EntityTypeBuilder<Produto> builder)
-        {
-            base.Configure(builder);
+            builder.Property(x => x.Criacao)
+                .HasColumnName("Criacao")
+                .IsRequired();
 
             builder.Property(x => x.Nome)
                 .HasColumnName("nome")
@@ -45,7 +46,7 @@ namespace Repository.Maps
                 .WithMany(x => x.Produtos)
                 .HasForeignKey(x => x.IdCategoria);
 
-
+            builder.ToTable("Produto");
         }
     }
 }

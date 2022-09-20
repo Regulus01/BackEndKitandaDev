@@ -4,22 +4,24 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Maps
 {
-    public class ImagemMap : BaseMap<ImagemProduto>
+    public class ImagemMap : IEntityTypeConfiguration<ImagemProduto>
     {
-        public ImagemMap(string tableNome) : base(tableNome)
+        public void Configure(EntityTypeBuilder<ImagemProduto> builder)
         {
-        }
+            builder.Property(x => x.Id)
+              .HasColumnName("Id")
+              .ValueGeneratedOnAdd();
 
-        public override void Configure(EntityTypeBuilder<ImagemProduto> builder)
-        {
-            base.Configure(builder);
+            builder.Property(x => x.Criacao)
+                .HasColumnName("Criacao")
+                .IsRequired();
 
             builder.Property(x => x.Nome)
                  .HasColumnName("nome")
                  .HasMaxLength(50);
 
             builder.Property(x => x.LinkImagem)
-               .HasColumnName("LinkImagem")
+               .HasColumnName("ImagemUrl")
                .HasMaxLength(50);
 
             // relacionamentos
@@ -30,6 +32,8 @@ namespace Repository.Maps
             builder.HasOne(x => x.Produto)
                 .WithMany(x => x.Imagens)
                 .HasForeignKey(x => x.IdProduto);
+
+            builder.ToTable("ImagemProduto");
 
         }
     }

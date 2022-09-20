@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Repository.Maps;
 
 namespace Repository.Common
 {
@@ -11,7 +12,10 @@ namespace Repository.Common
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+         
+            modelBuilder.ApplyConfiguration(new CategoriaProdutoMap());
+            modelBuilder.ApplyConfiguration(new ImagemMap());
+            modelBuilder.ApplyConfiguration(new ProdutoMap());
         }
 
         public ApplicationDbContext()

@@ -4,21 +4,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Maps
 {
-
-    public class CategoriaProdutoMap : BaseMap<CategoriaProduto>
+    public class CategoriaProdutoMap : IEntityTypeConfiguration<CategoriaProduto>
     {
-        public CategoriaProdutoMap(string tableNome) : base(tableNome)
+        public void Configure(EntityTypeBuilder<CategoriaProduto> builder)
         {
-        }
 
-        public override void Configure(EntityTypeBuilder<CategoriaProduto> builder)
-        {
-            base.Configure(builder);
+            builder.Property(x => x.Id)
+                .HasColumnName("Id")
+                .ValueGeneratedOnAdd();
+
+            builder.Property(x => x.Criacao)
+                .HasColumnName("Criacao")
+                .IsRequired();
 
             builder.Property(x => x.Nome)
                  .HasColumnName("nome")
                  .HasMaxLength(50)
                  .IsRequired();
+
+            builder.ToTable("CategoriaProduto");
         }
     }
 
