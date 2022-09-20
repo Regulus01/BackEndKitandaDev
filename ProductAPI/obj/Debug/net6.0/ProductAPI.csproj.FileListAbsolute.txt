@@ -46,3 +46,6 @@ G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
 G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\bin\Debug\net6.0\ProductAPI.xml
+G:\My Drive\Projeto Eng Software\KitandaBackEnd\BackEndKitandaDev\ProductAPI\obj\Debug\net6.0\ProductAPI.xml

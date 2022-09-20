@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ProductAPI.Controllers.ProductController.GetAll">
+            <summary>
+                EndPoint para exibir todos os produtos no banco
+            </summary>
+             <remarks>
+                  End point sem parametro que obtem todos os produtos do banco.
+             </remarks>
+            <returns>
+                Retorna produtos Criados
+            </returns>
+            <response code="200"> Retornar os produtos </response>
+            <response code="404"> Não há produtos no banco </response>
+            <response code="400"> Erro na requisiçào </response>
+        </member>
+    </members>
+</doc>

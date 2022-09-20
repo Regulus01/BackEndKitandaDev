@@ -20,18 +20,15 @@ namespace Repository.Repositories
 
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
         {
-            if(_context.Produtos != null)
-            {
-                List<Produto> produtos = await _context.Produtos
-                                                .Include(x => x.Categoria)
-                                                .Include(y => y.Imagens)
-                                                .OrderBy(x => x.Quantidade)
-                                                .ToListAsync();
 
-                return _mapper.Map <List<ProdutoGridViewModel>>(produtos);
-            }
+            List<Produto> produtos = await _context.Produtos
+                                            .Include(x => x.Categoria)
+                                            .Include(y => y.Imagens)
+                                            .OrderBy(x => x.Quantidade)
+                                            .ToListAsync();
 
-            return null;
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
+
         }
     }
 }
