@@ -22,7 +22,7 @@ namespace Repository.Maps
 
             builder.Property(x => x.LinkImagem)
                .HasColumnName("ImagemUrl")
-               .HasMaxLength(50);
+               .HasMaxLength(1000);
 
             // relacionamentos
             builder.Property(x => x.IdProduto)
