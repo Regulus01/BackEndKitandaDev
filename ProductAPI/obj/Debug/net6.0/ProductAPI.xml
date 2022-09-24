@@ -18,5 +18,19 @@
             <response code="404"> Não há produtos no banco </response>
             <response code="400"> Erro na requisiçào </response>
         </member>
+        <member name="M:ProductAPI.Controllers.ProductController.ProdutosPorCategoria(System.String)">
+            <summary>
+                EndPoint para exibir produtos por categoria
+            </summary>
+             <remarks>
+                  End point que recebe uma nome de categoria como parametro
+             </remarks>
+            <returns>
+                Retorna produtos com as categorias correspondentes
+            </returns>
+            <response code="200"> Retornar os produtos </response>
+            <response code="404"> Não há produtos no banco </response>
+            <response code="400"> Erro na requisiçào </response>
+        </member>
     </members>
 </doc>

@@ -5,5 +5,6 @@ namespace Interface.Repository
     public interface IProdutoRepository
     {
         Task<IEnumerable<ProdutoGridViewModel>> GetAll();
+        Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorCategoria(string nomeDaCategoria);
     }
 }

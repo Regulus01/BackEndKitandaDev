@@ -30,5 +30,32 @@ namespace Repository.Repositories
             return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
 
         }
+
+        public async Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorCategoria(string nomeDaCategoria)
+        {
+            List<Produto> produtos = await _context.Produtos
+                                            .Include(x => x.Categoria)
+                                            .Include(y => y.Imagens)
+                                            .OrderBy(x => x.Quantidade)
+                                            .ToListAsync();
+
+
+            var produtosCategoria = produtos.Where(x =>
+            RemoverAcentos(x.Categoria.Nome.ToUpper()) == RemoverAcentos(nomeDaCategoria.ToUpper()));
+
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtosCategoria);
+        }
+
+        private string RemoverAcentos(string texto)
+        {
+            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+            for (int i = 0; i < comAcentos.Length; i++)
+            {
+                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+            }
+            return texto;
+        }
     }
 }
