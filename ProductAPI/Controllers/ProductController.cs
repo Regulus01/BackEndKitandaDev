@@ -42,6 +42,30 @@ namespace ProductAPI.Controllers
         }
 
         /// <summary>
+        ///     EndPoint para exibir uma paginação com 5 produtos.
+        /// </summary>
+        ///  <remarks>
+        ///       End point que recebe uma pagina de produtos por parametro.
+        ///  </remarks>
+        /// <returns>
+        ///     Retorna uma paginação com 5 produtos
+        /// </returns>
+        /// <response code="200"> Retornar os produtos paginados </response>
+        /// <response code="404"> Não há produtos no banco </response>
+        /// <response code="400"> Erro na requisiçào </response>
+        [HttpGet("Pagina/{pagina}")]
+        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ProdutosPorPagina(int pagina = 1)
+        {
+            var produtos = await _repository.ProdutosPorPagina(pagina);
+            if (produtos != null)
+            {
+                return Ok(produtos);
+            }
+
+            return NotFound();
+        }
+
+        /// <summary>
         ///     EndPoint para exibir produtos por categoria
         /// </summary>
         ///  <remarks>

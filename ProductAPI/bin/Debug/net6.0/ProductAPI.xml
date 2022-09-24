@@ -18,6 +18,20 @@
             <response code="404"> Não há produtos no banco </response>
             <response code="400"> Erro na requisiçào </response>
         </member>
+        <member name="M:ProductAPI.Controllers.ProductController.ProdutosPorPagina(System.Int32)">
+            <summary>
+                EndPoint para exibir uma paginação com 5 produtos.
+            </summary>
+             <remarks>
+                  End point que recebe uma pagina de produtos por parametro.
+             </remarks>
+            <returns>
+                Retorna uma paginação com 5 produtos
+            </returns>
+            <response code="200"> Retornar os produtos paginados </response>
+            <response code="404"> Não há produtos no banco </response>
+            <response code="400"> Erro na requisiçào </response>
+        </member>
         <member name="M:ProductAPI.Controllers.ProductController.ProdutosPorCategoria(System.String)">
             <summary>
                 EndPoint para exibir produtos por categoria
