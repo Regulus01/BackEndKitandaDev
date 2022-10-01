@@ -1,4 +1,5 @@
-﻿using Interface.Repository;
+﻿using Domain.Data.ViewModels.Criacao;
+using Interface.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Data.ViewModels;
@@ -9,14 +10,37 @@ namespace ProductAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IProdutoRepository _repository;
+        private readonly IProdutoRepository _repository;
 
         public ProductController(IProdutoRepository produtoRepository)
         {
             _repository = produtoRepository ?? throw new
                 ArgumentException(nameof(produtoRepository));
         }
+        
+        /// <summary>
+        ///     EndPoint authorize para criar novos produtos
+        /// </summary>
+        ///  <remarks>
+        ///       End point usado para criar produto utilizando um produtoviewmodel e uma categoria(existente)
+        ///  </remarks>
+        /// <returns>
+        ///     Sem retorno
+        /// </returns>
+        /// <response code="200"> Produto inserido no banco </response>
+        /// <response code="401"> Não autorizado </response>
+        [HttpPost]
+        [Authorize("admin")]
+        public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel, string categoria)
+        {
+            if (viewModel == null)
+                return BadRequest();
 
+            await _repository.CriarProduto(viewModel, categoria);
+
+            return Ok();
+        }
+        
         /// <summary>
         ///     EndPoint para exibir todos os produtos no banco
         /// </summary>
@@ -30,11 +54,11 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> GetAll()
         {
             var produtos = await _repository.GetAll();
-            if (produtos != null)
+            if (produtos.Any())
             {
                 return Ok(produtos);
             }
@@ -55,10 +79,12 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet("Pagina/{pagina}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ProdutosPorPagina(int pagina = 1)
         {
             var produtos = await _repository.ProdutosPorPagina(pagina);
-            if (produtos != null)
+            
+            if (produtos.Any())
             {
                 return Ok(produtos);
             }
@@ -79,10 +105,11 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet("{nomeDaCategoria}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ProdutosPorCategoria(string nomeDaCategoria)
         {
             var produtos = await _repository.ProdutosPorCategoria(nomeDaCategoria);
-            if (produtos != null)
+            if (produtos.Any())
             {
                 return Ok(produtos);
             }

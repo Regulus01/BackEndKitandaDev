@@ -19,17 +19,13 @@ namespace Repository.Repositories.User
         {
             if (username != null && password != null)
             {
-                Usuario usuarioLogin = _context.Usuario.FirstOrDefault(x => x.UserName == username &&
+                var usuarioLogin = _context.Usuario.FirstOrDefault(x => x.UserName == username &&
                                                                             x.Password == password);
-                if (usuarioLogin != null)
-                    return usuarioLogin;
-                else
-                    return null;
+                return usuarioLogin;
             }
-            else
-            {
-                return null;
-            }
+            
+            return null;
+            
         }
     }
 }

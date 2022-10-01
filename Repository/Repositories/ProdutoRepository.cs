@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Data.ViewModels.Criacao;
 using Domain.Entities;
 using Interface.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ namespace Repository.Repositories
     {
         protected const int TamanhoPagina = 5;
         protected readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
+        private IMapper _mapper;
 
         public ProdutoRepository(ApplicationDbContext context, IMapper mapper)
         {
@@ -19,10 +20,24 @@ namespace Repository.Repositories
             _mapper = mapper;
         }
 
+        public async Task CriarProduto(ProdutoViewModel viewModel, string categoria)
+        {
+            var categoriaExiste = _context.CategoriaProdutos
+                .FirstOrDefault(x => x.Nome.ToUpper() == categoria.ToUpper());
+
+            if (categoriaExiste == null) 
+                throw new NullReferenceException("Categoria não existe");
+
+            var produto = _mapper.Map<Produto>(viewModel);
+            produto.AdicionarCategoriaId(categoriaExiste.Id);
+            _context.Add(produto);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
         {
 
-            List<Produto> produtos = await _context.Produtos
+            var produtos = await _context.Produtos
                                             .Include(x => x.Categoria)
                                             .Include(y => y.Imagens)
                                             .OrderBy(x => x.Quantidade)
@@ -36,7 +51,7 @@ namespace Repository.Repositories
         public async Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorPagina(int pagina)
         {
 
-            List<Produto> produtos = await _context.Produtos
+            var produtos = await _context.Produtos
                                             .Include(x => x.Categoria)
                                             .Include(y => y.Imagens)
                                             .Skip(TamanhoPagina * (pagina - 1))
@@ -51,7 +66,7 @@ namespace Repository.Repositories
 
         public async Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorCategoria(string nomeDaCategoria)
         {
-            List<Produto> produtos = await _context.Produtos
+            var produtos = await _context.Produtos
                                             .Include(x => x.Categoria)
                                             .Include(y => y.Imagens)
                                             .OrderBy(x => x.Quantidade)
@@ -65,10 +80,10 @@ namespace Repository.Repositories
 
         private string RemoverAcentos(string texto)
         {
-            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
-            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+            var comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            var semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
 
-            for (int i = 0; i < comAcentos.Length; i++)
+            for (var i = 0; i < comAcentos.Length; i++)
             {
                 texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
             }
