@@ -4,6 +4,20 @@
         <name>ProductAPI</name>
     </assembly>
     <members>
+        <member name="M:ProductAPI.Controllers.HomeController.Authenticate(Domain.Data.ViewModels.UsuarioLoginViewModel)">
+            <summary>
+                EndPoint fazer login na aplicação
+            </summary>
+             <remarks>
+                  End point que utiliza o usuarioLoginViewModel como parametro para fazer login na aplicação
+             </remarks>
+            <returns>
+                Retorna uma token para fazer a autenticação
+            </returns>
+            <response code="200"> Retornar token </response>
+            <response code="404"> Usuário ou senha invalidos </response>
+            <response code="400"> Campos usuario ou senha precisam ser preenchidos </response>
+        </member>
         <member name="M:ProductAPI.Controllers.ProductController.GetAll">
             <summary>
                 EndPoint para exibir todos os produtos no banco

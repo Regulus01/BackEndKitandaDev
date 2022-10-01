@@ -125,6 +125,39 @@ namespace Repository.Migrations
                     b.ToTable("Produto", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Usuario.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("Criacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Criacao");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("Password");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Role");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuario", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.ImagemProduto", b =>
                 {
                     b.HasOne("Domain.Entities.Produto", "Produto")

@@ -57,7 +57,6 @@ namespace Repository.Repositories
                                             .OrderBy(x => x.Quantidade)
                                             .ToListAsync();
 
-
             var produtosCategoria = produtos.Where(x =>
             RemoverAcentos(x.Categoria.Nome.ToUpper()) == RemoverAcentos(nomeDaCategoria.ToUpper()));
 

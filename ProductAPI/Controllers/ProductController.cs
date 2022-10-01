@@ -1,11 +1,11 @@
 ﻿using Interface.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Data.ViewModels;
-using System.Collections;
 
 namespace ProductAPI.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -30,6 +30,7 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> GetAll()
         {
             var produtos = await _repository.GetAll();

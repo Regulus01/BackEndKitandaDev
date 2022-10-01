@@ -1,5 +1,7 @@
 ﻿using Interface.Repository;
+using Interface.Repository.User;
 using Repository.Repositories;
+using Repository.Repositories.User;
 
 namespace ProductAPI.DependencyInjection
 {
@@ -13,6 +15,7 @@ namespace ProductAPI.DependencyInjection
         private static void RepositoryDependence(IServiceCollection serviceProvider)
         {
             serviceProvider.AddScoped<IProdutoRepository, ProdutoRepository>();
+            serviceProvider.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

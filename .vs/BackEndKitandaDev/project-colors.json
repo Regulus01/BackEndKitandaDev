@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
+    },
+    "6fbb9aab-e15a-4a54-b27d-1854556992ab": {
+      "ProjectGuid": "6fbb9aab-e15a-4a54-b27d-1854556992ab",
+      "DisplayName": "Repository",
+      "ColorIndex": 0
+    },
+    "c81cda17-23a1-4884-b519-35e160c69ffb": {
+      "ProjectGuid": "c81cda17-23a1-4884-b519-35e160c69ffb",
+      "DisplayName": "ProductAPI",
+      "ColorIndex": 1
+    },
+    "e5c98d2c-e8d0-4974-ad39-1f7e5dfe9c9d": {
+      "ProjectGuid": "e5c98d2c-e8d0-4974-ad39-1f7e5dfe9c9d",
+      "DisplayName": "Domain",
+      "ColorIndex": 2
+    },
+    "4bb4ecf4-4b9a-469d-b8d2-d84694b869ad": {
+      "ProjectGuid": "4bb4ecf4-4b9a-469d-b8d2-d84694b869ad",
+      "DisplayName": "Interface",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
