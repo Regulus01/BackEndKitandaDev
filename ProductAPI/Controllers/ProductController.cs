@@ -30,7 +30,7 @@ namespace ProductAPI.Controllers
         /// <response code="200"> Produto inserido no banco </response>
         /// <response code="401"> Não autorizado </response>
         [HttpPost]
-        [Authorize("admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel, string categoria)
         {
             if (viewModel == null)
@@ -54,7 +54,6 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> GetAll()
         {
             var produtos = await _repository.GetAll();
