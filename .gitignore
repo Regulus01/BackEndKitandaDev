@@ -6,6 +6,8 @@
 *.dll.config
 *.cache
 *.suo
+*.idea
+*.vs
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
 !*CommonReferences/*.dll
