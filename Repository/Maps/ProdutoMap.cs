@@ -11,11 +11,7 @@ namespace Repository.Maps
             builder.Property(x => x.Id)
               .HasColumnName("Id")
               .ValueGeneratedOnAdd();
-
-            builder.Property(x => x.Criacao)
-                .HasColumnName("Criacao")
-                .IsRequired();
-
+            
             builder.Property(x => x.Nome)
                 .HasColumnName("nome")
                 .HasMaxLength(50)

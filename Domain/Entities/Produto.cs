@@ -2,14 +2,14 @@
 {
     public class Produto : BaseEntity
     {
-        public string Nome { get; set; }
-        public int Quantidade { get; set; }
-        public string Descricao { get; set; }
-        public decimal Preco { get; set; }
+        public string Nome { get; }
+        public int Quantidade { get; }
+        public string Descricao { get; }
+        public decimal Preco { get; }
 
-        public Guid IdCategoria { get; set; }
-        public virtual CategoriaProduto Categoria { get; set; }
+        public Guid IdCategoria { get; }
+        public virtual CategoriaProduto Categoria { get; }
 
-        public virtual List<ImagemProduto> Imagens { get; set; }
+        public virtual List<ImagemProduto> Imagens { get; }
     }
 }

@@ -2,9 +2,9 @@
 {
     public class CategoriaProduto : BaseEntity
     {
-        public string Nome { get; set; }
+        public string Nome { get; }
 
-        public virtual List<Produto> Produtos { get; set; } 
+        public virtual List<Produto> Produtos { get; } 
 
     }
 }

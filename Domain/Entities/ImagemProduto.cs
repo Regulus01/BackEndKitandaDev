@@ -2,11 +2,11 @@
 {
     public class ImagemProduto : BaseEntity
     {
-        public string Nome { get; private set; }
-        public string LinkImagem { get; private set; }
+        public string Nome { get; }
+        public string LinkImagem { get; }
 
-        public Guid IdProduto { get; private set; }
-        public virtual Produto Produto { get; private set; }
+        public Guid IdProduto { get; }
+        public virtual Produto Produto { get; }
 
     }
 }
