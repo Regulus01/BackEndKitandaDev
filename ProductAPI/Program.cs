@@ -59,7 +59,7 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
         Scheme = JwtBearerDefaults.AuthenticationScheme,
-        Description = "Digite o token de autorização",
+        Description = "Digite o token de autorizaï¿½ï¿½o",
 
         Reference = new OpenApiReference
         {
@@ -82,7 +82,19 @@ builder.Services.AddAuthentication(x =>
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 });
-
+/*
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy  =>
+        {
+            policy.WithOrigins("http://localhost:5181/swagger/index.html",
+                "http://localhost:5181/swagger/index.html").AllowAnyHeader()
+                .AllowAnyMethod();;
+        });
+});
+*/
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Settings.secret);
@@ -117,6 +129,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 

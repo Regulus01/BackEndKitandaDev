@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Usuario;
+﻿using Domain.Entities.Usuario;               
 using Microsoft.IdentityModel.Tokens;
 using ProductAPI.Config.Jwt;
 using System.IdentityModel.Tokens.Jwt;
