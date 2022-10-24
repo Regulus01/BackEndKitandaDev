@@ -83,18 +83,6 @@ builder.Services.AddAuthentication(x =>
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 });
 
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy  =>
-        {
-            policy.WithOrigins("http://localhost:7181/swagger/index.html",
-                "http://localhost:7181/swagger/index.html").AllowAnyHeader()
-                .AllowAnyMethod();;
-        });
-});
-
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Settings.secret);
@@ -130,7 +118,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(x =>
+{
+    x.AllowAnyHeader();
+    x.AllowAnyMethod();
+    x.AllowAnyOrigin();
+});
 
 app.UseAuthentication();
 

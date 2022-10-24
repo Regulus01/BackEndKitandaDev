@@ -6,7 +6,7 @@ using ProductAPI.Data.ViewModels;
 
 namespace ProductAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Produto")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -54,6 +54,7 @@ namespace ProductAPI.Controllers
         /// <response code="404"> Não há produtos no banco </response>
         /// <response code="400"> Erro na requisiçào </response>
         [HttpGet]
+        [Route("ObterProdutos")]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> GetAll()
         {
             var produtos = await _repository.GetAll();
