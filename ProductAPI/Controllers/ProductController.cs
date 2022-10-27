@@ -6,7 +6,7 @@ using ProductAPI.Data.ViewModels;
 
 namespace ProductAPI.Controllers
 {
-    [Route("Produto")]
+    [Route("api/Produto")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace ProductAPI.Controllers
             _repository = produtoRepository ?? throw new
                 ArgumentException(nameof(produtoRepository));
         }
-        
+
         /// <summary>
         ///     EndPoint authorize para criar novos produtos
         /// </summary>
@@ -40,7 +40,7 @@ namespace ProductAPI.Controllers
 
             return Ok();
         }
-        
+
         /// <summary>
         ///     EndPoint para exibir todos os produtos no banco
         /// </summary>
@@ -83,7 +83,7 @@ namespace ProductAPI.Controllers
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ProdutosPorPagina(int pagina = 1)
         {
             var produtos = await _repository.ProdutosPorPagina(pagina);
-            
+
             if (produtos.Any())
             {
                 return Ok(produtos);
@@ -109,6 +109,31 @@ namespace ProductAPI.Controllers
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ProdutosPorCategoria(string nomeDaCategoria)
         {
             var produtos = await _repository.ProdutosPorCategoria(nomeDaCategoria);
+            if (produtos.Any())
+            {
+                return Ok(produtos);
+            }
+
+            return NotFound();
+        }
+
+        /// <summary>
+        /// End point que retorna as 10 ofertas mais vendidas
+        /// </summary>
+        ///  <remarks>
+        ///       End point sem parametro que retorna os 10 produtos mais vendidos
+        ///  </remarks>
+        /// <returns>
+        ///     Retorna os produtos mais vendidos
+        /// </returns>
+        /// <response code="200"> Retorna os produtos </response>
+        /// <response code="404"> Sem produtos para exibir </response>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("ObterMaisVendidos")]
+        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterMaisVendidos()
+        {
+            var produtos = await _repository.ObterMaisVendidos();
             if (produtos.Any())
             {
                 return Ok(produtos);

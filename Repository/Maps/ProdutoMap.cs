@@ -33,6 +33,10 @@ namespace Repository.Maps
                 .HasPrecision(17, 2)
                 .IsRequired();
 
+            builder.Property(x => x.QuantidadeVendida)
+                .HasColumnName("QuantidadeVendida")
+                .IsRequired();
+
             // Relacionamentos
 
             builder.Property(x => x.IdCategoria)

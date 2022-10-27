@@ -9,5 +9,6 @@ namespace Interface.Repository
         Task<IEnumerable<ProdutoGridViewModel>> GetAll();
         Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorCategoria(string nomeDaCategoria);
         Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorPagina(int pagina);
+        Task<IEnumerable<ProdutoGridViewModel>> ObterMaisVendidos();
     }
 }

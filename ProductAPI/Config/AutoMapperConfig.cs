@@ -12,7 +12,7 @@ namespace ProductAPI.Config
             var autoMapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<Produto, ProdutoGridViewModel>()
-                    .ForMember(x => x.CategoriaNome, opt => opt.MapFrom(src => src.Nome));
+                    .ForMember(x => x.CategoriaNome, opt => opt.MapFrom(src => src.Categoria.Nome));
                 config.CreateMap<ProdutoGridViewModel, Produto>();
 
                 config.CreateMap<CategoriaProduto, CategoriaProdutoGridViewModel>().ReverseMap();

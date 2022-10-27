@@ -30,8 +30,13 @@ namespace Repository.Repositories
 
             var produto = _mapper.Map<Produto>(viewModel);
             produto.AdicionarCategoriaId(categoriaExiste.Id);
+
             _context.Add(produto);
             await _context.SaveChangesAsync();
+
+            ImagemProduto semImagem = new ImagemProduto();
+             produto.AdicionarImagem(semImagem.CriarImagemProdutoSemFoto(produto.Id));
+           
         }
 
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
@@ -76,6 +81,25 @@ namespace Repository.Repositories
             RemoverAcentos(x.Categoria.Nome.ToUpper()) == RemoverAcentos(nomeDaCategoria.ToUpper()));
 
             return _mapper.Map<List<ProdutoGridViewModel>>(produtosCategoria);
+        }
+
+        public async Task<IEnumerable<ProdutoGridViewModel>> ObterMaisVendidos()
+        {
+            var produtos = await _context.Produtos
+                                  .Include(x => x.Categoria)
+                                  .Include(x => x.Imagens)
+                                  .OrderByDescending(x => x.QuantidadeVendida)
+                                  .ToListAsync();
+
+            var produtosMaisVendidos = new List<Produto>();
+            
+            for (int i = 0; i < 10; i++)
+            {
+                produtosMaisVendidos.Add(produtos[i]);
+            }
+
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtosMaisVendidos);
+
         }
 
         private string RemoverAcentos(string texto)
