@@ -7,5 +7,7 @@
         public string Password { get; set; }
         public string Role { get; set; }
         public DateTime Criacao {get; set;}
+        
+        public virtual Cliente Cliente { get; set; }
     }
 }

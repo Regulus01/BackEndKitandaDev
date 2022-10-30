@@ -31,6 +31,10 @@ namespace Repository.Maps.User
                    .HasColumnName("Criacao")
                    .IsRequired();
 
+            builder.HasOne(x => x.Cliente)
+                   .WithOne(x => x.Usuario)
+                   .HasForeignKey<Cliente>(x => x.UsuarioId);
+            
             builder.ToTable("Usuario");
         }
     }

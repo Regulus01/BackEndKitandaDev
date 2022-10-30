@@ -6,17 +6,22 @@
         public string LinkImagem { get; private set; }
 
         public Guid IdProduto { get; private set;  }
-        public virtual Produto Produto { get; }
-
-
-        public ImagemProduto CriarImagemProdutoSemFoto(Guid idProduto)
+        public virtual Produto Produto { get; private set; }
+        
+        public void CriarImagemProdutoSemFoto()
         {
-            ImagemProduto imagem = new ImagemProduto();
-            imagem.Nome = "Capa";
-            imagem.LinkImagem = "https://www.inovegas.com.br/site/wp-content/uploads/2017/08/sem-foto.jpg";
-            imagem.IdProduto = idProduto;
+            Nome = "Principal";
+            LinkImagem = "https://www.inovegas.com.br/site/wp-content/uploads/2017/08/sem-foto.jpg";
+        }
 
-            return imagem;
+        public void InformeIdProduto(Guid idProduto)
+        {
+            IdProduto = idProduto;
+        }
+
+        public void InformeProduto(Produto produto)
+        {
+            Produto = produto;
         }
 
     }

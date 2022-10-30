@@ -2,8 +2,8 @@
 {
     public class ImagemProdutoGridViewModel
     {
-        public string Nome { get; private set; }
-        public string LinkImagem { get; private set; }
+        public string Nome { get; set; }
+        public string LinkImagem { get; set; }
 
     }
 }

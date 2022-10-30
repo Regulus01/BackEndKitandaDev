@@ -11,6 +11,7 @@ namespace Repository.Common
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<CategoriaProduto> CategoriaProdutos { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +21,7 @@ namespace Repository.Common
             modelBuilder.ApplyConfiguration(new ImagemMap());
             modelBuilder.ApplyConfiguration(new ProdutoMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new ClienteMap());
           
         }
 

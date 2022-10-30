@@ -10,9 +10,9 @@ namespace Repository.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        protected const int TamanhoPagina = 5;
-        protected readonly ApplicationDbContext _context;
-        private IMapper _mapper;
+        private const int TamanhoPagina = 5;
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
         public ProdutoRepository(ApplicationDbContext context, IMapper mapper)
         {
@@ -23,20 +23,29 @@ namespace Repository.Repositories
         public async Task CriarProduto(ProdutoViewModel viewModel, string categoria)
         {
             var categoriaExiste = _context.CategoriaProdutos
-                .FirstOrDefault(x => x.Nome.ToUpper() == categoria.ToUpper());
-
+                .FirstOrDefault(x => x.Nome.ToUpper().Equals(categoria.ToUpper()));
+            
             if (categoriaExiste == null) 
                 throw new NullReferenceException("Categoria não existe");
-
+            
             var produto = _mapper.Map<Produto>(viewModel);
             produto.AdicionarCategoriaId(categoriaExiste.Id);
-
             _context.Add(produto);
+            ImagemProduto imagem;
+            if (viewModel.Imagem != null)
+                imagem = _mapper.Map<ImagemProduto>(viewModel);
+            else
+            {
+                imagem = new ImagemProduto();
+                imagem.CriarImagemProdutoSemFoto();
+            }
+            
+            imagem.InformeId(Guid.NewGuid());
+            imagem.InformeIdProduto(produto.Id);
+            imagem.InformeProduto(produto);
+            _context.Add(imagem);
+            
             await _context.SaveChangesAsync();
-
-            ImagemProduto semImagem = new ImagemProduto();
-             produto.AdicionarImagem(semImagem.CriarImagemProdutoSemFoto(produto.Id));
-           
         }
 
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
@@ -48,14 +57,13 @@ namespace Repository.Repositories
                                             .OrderBy(x => x.Quantidade)
                                             .ToListAsync();
 
-
             return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
 
         }
 
         public async Task<IEnumerable<ProdutoGridViewModel>> ProdutosPorPagina(int pagina)
         {
-
+            
             var produtos = await _context.Produtos
                                             .Include(x => x.Categoria)
                                             .Include(y => y.Imagens)
