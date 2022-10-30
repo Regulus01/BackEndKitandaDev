@@ -123,7 +123,6 @@ else
     {
         opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger V1");
     });
-    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
