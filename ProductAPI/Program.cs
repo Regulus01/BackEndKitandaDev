@@ -118,11 +118,7 @@ if (app.Environment.IsDevelopment())
 
 else
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(opt =>
-    {
-        opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger V1");
-    });
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -132,7 +128,6 @@ app.UseCors(x =>
     x.AllowAnyHeader();
     x.AllowAnyMethod();
     x.AllowAnyOrigin();
-    x.AllowCredentials();
 });
 
 app.UseAuthentication();
