@@ -116,6 +116,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+else
+{
+    app.UseHsts();
+}
+
 app.UseHttpsRedirection();
 
 app.UseCors(x =>
