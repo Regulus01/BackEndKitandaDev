@@ -1,6 +1,7 @@
 ﻿using Domain.Data.ViewModels.Criacao;
 using Interface.Repository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Data.ViewModels;
 
@@ -8,6 +9,7 @@ namespace ProductAPI.Controllers
 {
     [Route("api/Produto")]
     [ApiController]
+    [EnableCors("kitandadev.herokuapp.com")]
     public class ProductController : ControllerBase
     {
         private readonly IProdutoRepository _repository;
