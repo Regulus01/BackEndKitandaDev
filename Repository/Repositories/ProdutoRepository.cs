@@ -24,10 +24,10 @@ namespace Repository.Repositories
         {
             var categoriaExiste = _context.CategoriaProdutos
                 .FirstOrDefault(x => x.Nome.ToUpper().Equals(categoria.ToUpper()));
-            
-            if (categoriaExiste == null) 
+
+            if (categoriaExiste == null)
                 throw new NullReferenceException("Categoria não existe");
-            
+
             var produto = _mapper.Map<Produto>(viewModel);
             produto.AdicionarCategoriaId(categoriaExiste.Id);
             _context.Add(produto);
@@ -39,13 +39,25 @@ namespace Repository.Repositories
                 imagem = new ImagemProduto();
                 imagem.CriarImagemProdutoSemFoto();
             }
-            
+
             imagem.InformeId(Guid.NewGuid());
             imagem.InformeIdProduto(produto.Id);
             imagem.InformeProduto(produto);
             _context.Add(imagem);
-            
+
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ProdutoGridViewModel>> ObterProdutoPorNome(string nomeProduto)
+        {
+            var produtos = await _context.Produtos
+                .Include(x => x.Categoria)
+                .Include(y => y.Imagens)
+                .OrderBy(x => x.Quantidade)
+                .Where(x => x.Nome.ToUpper().Contains(nomeProduto.ToUpper()))
+                .ToListAsync();
+            
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
         }
 
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()

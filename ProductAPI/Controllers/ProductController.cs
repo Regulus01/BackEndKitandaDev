@@ -141,5 +141,19 @@ namespace ProductAPI.Controllers
 
             return NotFound();
         }
+
+        [HttpGet]
+        [Route("ObterPorNome")]
+        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorNome(string nomeDoProduto)
+        {
+            var produtos = await _repository.ObterProdutoPorNome(nomeDoProduto);
+            
+            if (produtos.Any())
+            {
+                return Ok(produtos);
+            }
+
+            return NotFound();
+        }
     }
 }
