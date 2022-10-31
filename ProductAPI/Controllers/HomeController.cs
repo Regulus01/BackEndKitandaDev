@@ -56,5 +56,14 @@ namespace ProductAPI.Controllers
                 token = token
             };
         }
+        
+        [HttpGet]
+        [Authorize]
+        public Usuario ObterUsuarioLogado()
+        {
+            var usuario = _repository.ObterUsuarioLogado();
+
+            return usuario;
+        }
     }
 }

@@ -11,6 +11,7 @@ using Repository.Common;
 using System.Data.Common;
 using System.Reflection;
 using System.Text;
+using Domain.Entities.Usuario;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,7 +60,7 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
         Scheme = JwtBearerDefaults.AuthenticationScheme,
-        Description = "Digite o token de autoriza��o",
+        Description = "Digite o token de autorizaçãoo",
 
         Reference = new OpenApiReference
         {
@@ -82,6 +83,9 @@ builder.Services.AddAuthentication(x =>
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 });
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<AuthenticatedUser>();
 
 builder.Services.AddCors();
 

@@ -7,5 +7,6 @@ namespace Interface.Repository.User
     {
         public Usuario? GetUsuario(string username, string password);
         public Cliente CriarUsuario(ClienteViewModel viewModel);
+        public Usuario ObterUsuarioLogado();
     }
 }
