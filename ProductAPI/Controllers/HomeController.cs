@@ -58,6 +58,7 @@ namespace ProductAPI.Controllers
         }
         
         [HttpGet]
+        [Route("ObterLogado")]
         [Authorize]
         public Usuario ObterUsuarioLogado()
         {
