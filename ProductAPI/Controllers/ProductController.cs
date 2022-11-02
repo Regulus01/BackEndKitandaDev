@@ -30,7 +30,8 @@ namespace ProductAPI.Controllers
         /// <response code="200"> Produto inserido no banco </response>
         /// <response code="401"> Não autorizado </response>
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel, string categoria)
         {
             if (viewModel == null)
@@ -147,6 +148,20 @@ namespace ProductAPI.Controllers
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorNome(string nomeDoProduto)
         {
             var produtos = await _repository.ObterProdutoPorNome(nomeDoProduto);
+            
+            if (produtos.Any())
+            {
+                return Ok(produtos);
+            }
+
+            return NotFound();
+        }
+        
+        [HttpGet]
+        [Route("ObterPorId")]
+        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorId(Guid id)
+        {
+            var produtos = await _repository.ObterProdutoPorId(id);
             
             if (produtos.Any())
             {

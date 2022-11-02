@@ -122,6 +122,11 @@ if (app.Environment.IsDevelopment())
 
 else
 {
+    app.UseSwagger();
+    app.UseSwaggerUI(opt =>
+    {
+        opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Produção V1");
+    });
     app.UseHsts();
 }
 

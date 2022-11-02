@@ -19,7 +19,6 @@ namespace Repository.Repositories
             _context = context;
             _mapper = mapper;
         }
-
         public async Task CriarProduto(ProdutoViewModel viewModel, string categoria)
         {
             var categoriaExiste = _context.CategoriaProdutos
@@ -60,6 +59,18 @@ namespace Repository.Repositories
             return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
         }
 
+        public async Task<IEnumerable<ProdutoGridViewModel>> ObterProdutoPorId(Guid id)
+        {
+            var produtos = await _context.Produtos
+                .Include(x => x.Categoria)
+                .Include(y => y.Imagens)
+                .OrderBy(x => x.Quantidade)
+                .Where(x => x.Id == id)
+                .ToListAsync();
+            
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
+        }
+        
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
         {
 

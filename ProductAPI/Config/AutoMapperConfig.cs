@@ -12,7 +12,8 @@ namespace ProductAPI.Config
             var autoMapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<Produto, ProdutoGridViewModel>()
-                    .ForMember(x => x.CategoriaNome, opt => opt.MapFrom(src => src.Categoria.Nome));
+                    .ForMember(x => x.CategoriaNome, opt => opt.MapFrom(src => src.Categoria.Nome))
+                    .ForMember(x => x.ProdutoId, opt => opt.MapFrom(src => src.Id));
                 config.CreateMap<ProdutoGridViewModel, Produto>();
 
                 config.CreateMap<ProdutoViewModel, ImagemProduto>()

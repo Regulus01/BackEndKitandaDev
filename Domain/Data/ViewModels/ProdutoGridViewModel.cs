@@ -2,6 +2,7 @@
 {
     public class ProdutoGridViewModel
     {
+        public Guid ProdutoId { get; set; }
         public string Nome { get; set; }
         public int Quantidade { get; set; }
         public string Descricao { get; set; }
