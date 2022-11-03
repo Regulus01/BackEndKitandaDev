@@ -1,4 +1,5 @@
 ﻿using Domain.Data.ViewModels;
+using Domain.Data.ViewModels.Criacao;
 using Domain.Entities.Usuario;
 using Interface.Repository.User;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +48,7 @@ namespace ProductAPI.Controllers
             var token = TokenService.GenerateToken(user);
 
             // Oculta a senha
-            user.Password = "";
+            user.InformeSennha("");
 
             // Retorna os dados
             return new
@@ -65,6 +66,15 @@ namespace ProductAPI.Controllers
             var usuario = _repository.ObterUsuarioLogado();
 
             return usuario;
+        }
+
+        [HttpPost]
+        [Route("CriarUsuario")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ClienteViewModel>> CriarUsuario([FromBody] ClienteViewModel usuario)
+        {
+            await _repository.CriarUsuario(usuario);
+            return Ok();
         }
     }
 }

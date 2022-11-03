@@ -9,7 +9,7 @@ namespace Repository.Repositories.User
     public class UserRepository : IUserRepository
     {
         protected readonly ApplicationDbContext _context;
-        //private IMapper _mapper;
+        private IMapper _mapper;
         private Usuario _usuarioLogado;
 
         public UserRepository(ApplicationDbContext context, AuthenticatedUser user)
@@ -35,9 +35,23 @@ namespace Repository.Repositories.User
         {
             return _usuarioLogado;
         }
-        public Cliente CriarUsuario(ClienteViewModel viewModel)
+        
+        public async Task CriarUsuario(ClienteViewModel viewModel)
         {
-            return null;
+            if (viewModel == null)
+                throw new NullReferenceException("Não há informações para serem cadastradas");
+            
+            var usuario = _mapper.Map<Usuario>(viewModel);
+            usuario.InformeRole("Cliente");
+            usuario.InfomeCriacao(DateTime.UtcNow);
+            _context.Add(usuario);
+            await _context.SaveChangesAsync();
+            
+            var cliente = _mapper.Map<Cliente>(viewModel);
+            _context.Add(cliente);
+            cliente.InformeUsuarioId(usuario.Id);
+            await _context.SaveChangesAsync();
+            
         }
     }
 }

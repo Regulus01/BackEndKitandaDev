@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Data.ViewModels.Criacao;
 using Domain.Entities;
+using Domain.Entities.Usuario;
 using ProductAPI.Data.ViewModels;
 
 namespace ProductAPI.Config
@@ -24,6 +25,15 @@ namespace ProductAPI.Config
                 config.CreateMap<ImagemProduto, ImagemProdutoGridViewModel>().ReverseMap();
 
                 config.CreateMap<ProdutoViewModel, Produto>();
+
+                config.CreateMap<ClienteViewModel, Usuario>()
+                    .ForMember(x => x.UserName, opt => opt.MapFrom(src => src.Usuario.UserName))
+                    .ForMember(x => x.Password, opt => opt.MapFrom(src => src.Usuario.Password));
+
+                config.CreateMap<ClienteViewModel, Cliente>()
+                    .ForMember(x => x.Cpf, opt => opt.MapFrom(src => src.Cpf))
+                    .ForMember(x => x.NomeCliente, opt => opt.MapFrom(src => src.NomeCliente))
+                    .ForMember(x => x.Telefone, opt => opt.MapFrom(src => src.Telefone));
             });
 
             return autoMapperConfig;

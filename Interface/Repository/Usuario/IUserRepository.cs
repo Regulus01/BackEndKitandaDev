@@ -5,8 +5,8 @@ namespace Interface.Repository.User
 {
     public interface IUserRepository
     {
-        public Usuario? GetUsuario(string username, string password);
-        public Cliente CriarUsuario(ClienteViewModel viewModel);
-        public Usuario ObterUsuarioLogado();
+        Usuario? GetUsuario(string username, string password);
+        Task CriarUsuario(ClienteViewModel viewModel);
+        Usuario ObterUsuarioLogado();
     }
 }
