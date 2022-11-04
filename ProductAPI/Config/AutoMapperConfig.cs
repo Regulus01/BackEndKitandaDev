@@ -33,7 +33,8 @@ namespace ProductAPI.Config
                 config.CreateMap<ClienteViewModel, Cliente>()
                     .ForMember(x => x.Cpf, opt => opt.MapFrom(src => src.Cpf))
                     .ForMember(x => x.NomeCliente, opt => opt.MapFrom(src => src.NomeCliente))
-                    .ForMember(x => x.Telefone, opt => opt.MapFrom(src => src.Telefone));
+                    .ForMember(x => x.Telefone, opt => opt.MapFrom(src => src.Telefone))
+                    .ForMember(x => x.Usuario, i => i.Ignore());
             });
 
             return autoMapperConfig;

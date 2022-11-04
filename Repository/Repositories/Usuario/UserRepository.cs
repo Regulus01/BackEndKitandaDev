@@ -12,9 +12,10 @@ namespace Repository.Repositories.User
         private IMapper _mapper;
         private Usuario _usuarioLogado;
 
-        public UserRepository(ApplicationDbContext context, AuthenticatedUser user)
+        public UserRepository(ApplicationDbContext context, AuthenticatedUser user, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public Usuario? GetUsuario(string username, string password)
@@ -48,8 +49,8 @@ namespace Repository.Repositories.User
             await _context.SaveChangesAsync();
             
             var cliente = _mapper.Map<Cliente>(viewModel);
-            _context.Add(cliente);
             cliente.InformeUsuarioId(usuario.Id);
+            _context.Add(cliente);
             await _context.SaveChangesAsync();
             
         }
