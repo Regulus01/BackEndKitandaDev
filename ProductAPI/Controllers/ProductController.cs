@@ -155,7 +155,7 @@ namespace ProductAPI.Controllers
         /// <response code="200"> Retorna os produtos </response>
         /// <response code="404"> Sem produtos para exibir </response>
         [HttpGet]
-        [Route("ObterPorNome")]
+        [Route("ObterPorNome/{nomeDoProduto}")]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorNome(string nomeDoProduto)
         {
             var produtos = await _repository.ObterProdutoPorNome(nomeDoProduto);
