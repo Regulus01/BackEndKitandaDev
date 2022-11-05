@@ -63,7 +63,7 @@ namespace ProductAPI.Controllers
         [Authorize]
         public Task<Usuario> ObterUsuarioLogado()
         {
-            return _repository.GetUser();
+            return null;
         }
 
         [HttpPost]

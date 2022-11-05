@@ -1,4 +1,5 @@
-﻿using Interface.Repository;
+﻿using Domain.Entities.Usuario;
+using Interface.Repository;
 using Interface.Repository.User;
 using Repository.Repositories;
 using Repository.Repositories.User;
@@ -16,8 +17,6 @@ namespace ProductAPI.DependencyInjection
         {
             serviceProvider.AddScoped<IProdutoRepository, ProdutoRepository>();
             serviceProvider.AddScoped<IUserRepository, UserRepository>();
-            
-            serviceProvider.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

@@ -84,9 +84,6 @@ builder.Services.AddAuthentication(x =>
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 });
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddScoped<AuthenticatedUser>();
-
 builder.Services.AddCors();
 
 var key = Encoding.ASCII.GetBytes(Settings.secret);
@@ -107,8 +104,6 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
-
-builder.Services.AddScoped<AuthenticatedUser>();
 
 var app = builder.Build();
 

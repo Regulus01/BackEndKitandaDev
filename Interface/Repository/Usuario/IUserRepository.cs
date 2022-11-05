@@ -7,6 +7,5 @@ namespace Interface.Repository.User
     {
         Usuario? GetUsuario(string username, string password);
         Task CriarUsuario(ClienteViewModel viewModel);
-        Task<Usuario> GetUser();
     }
 }
