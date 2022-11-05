@@ -30,7 +30,8 @@ namespace ProductAPI.Controllers
         /// <response code="200"> Produto inserido no banco </response>
         /// <response code="401"> Não autorizado </response>
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")] 
+        //[FromHeader] string token
         [AllowAnonymous]
         public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel, string categoria)
         {
