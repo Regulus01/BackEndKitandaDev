@@ -2,6 +2,8 @@
 using Domain.Data.ViewModels.Criacao;
 using Interface.Repository.User;
 using Domain.Entities.Usuario;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Repository.Common;
 
 namespace Repository.Repositories.User
@@ -10,12 +12,17 @@ namespace Repository.Repositories.User
     {
         protected readonly ApplicationDbContext _context;
         private IMapper _mapper;
-        private Usuario _usuarioLogado;
+        
+        private readonly UserManager<Usuario> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserRepository(ApplicationDbContext context, AuthenticatedUser user, IMapper mapper)
+        public UserRepository(ApplicationDbContext context, IMapper mapper,
+            UserManager<Usuario> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Usuario? GetUsuario(string username, string password)
@@ -26,15 +33,14 @@ namespace Repository.Repositories.User
             var usuarioLogin = _context.Usuario.FirstOrDefault(x => x.UserName == username && 
                                                                     x.Password == password);
             
-            if (usuarioLogin != null)
-                _usuarioLogado = usuarioLogin;
             
             return usuarioLogin;
         }
 
-        public Usuario ObterUsuarioLogado()
+        public async Task<Usuario> GetUser()
         {
-            return _usuarioLogado;
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            return user;
         }
         
         public async Task CriarUsuario(ClienteViewModel viewModel)

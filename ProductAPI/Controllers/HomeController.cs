@@ -61,11 +61,9 @@ namespace ProductAPI.Controllers
         [HttpGet]
         [Route("ObterLogado")]
         [Authorize]
-        public Usuario ObterUsuarioLogado()
+        public Task<Usuario> ObterUsuarioLogado()
         {
-            var usuario = _repository.ObterUsuarioLogado();
-
-            return usuario;
+            return _repository.GetUser();
         }
 
         [HttpPost]

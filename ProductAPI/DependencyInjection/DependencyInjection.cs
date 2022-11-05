@@ -16,6 +16,8 @@ namespace ProductAPI.DependencyInjection
         {
             serviceProvider.AddScoped<IProdutoRepository, ProdutoRepository>();
             serviceProvider.AddScoped<IUserRepository, UserRepository>();
+            
+            serviceProvider.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

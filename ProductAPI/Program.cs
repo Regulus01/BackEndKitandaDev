@@ -108,6 +108,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddScoped<AuthenticatedUser>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
