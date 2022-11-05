@@ -1,6 +1,5 @@
 ﻿using Domain.Data.ViewModels;
 using Domain.Data.ViewModels.Criacao;
-using Domain.Entities.Usuario;
 using Interface.Repository.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -58,14 +57,32 @@ namespace ProductAPI.Controllers
             };
         }
         
+        /// <summary>
+        /// EndPoint que obtem o nome do usuário logado
+        /// </summary>
+        ///  <remarks>
+        ///       End point que retorna o nome do usuário logado na aplicação
+        ///  </remarks>
+        /// <returns>Nome do usuário logado</returns>
+        ///<response code="200"> Usuário está logado </response>
+        ///<response code="401"> Não autenticado </response>
         [HttpGet]
-        [Route("ObterLogado")]
+        [Route("authenticated")]
         [Authorize]
-        public Task<Usuario> ObterUsuarioLogado()
+        public string Authenticated()
         {
-            return null;
+            return String.Format("Autenticado - {0}", User.Identity.Name);
         }
 
+        /// <summary>
+        ///     EndPoint que cria um usuário
+        /// </summary>
+        ///<remarks>
+        ///     EndPoint utilizado para criar um usuário para logar na aplicação
+        /// </remarks>>
+        /// <param name="usuario"></param>
+        /// <returns>Sem retorno</returns>
+        ///<response code="200"> Usuário criado com sucesso </response>
         [HttpPost]
         [Route("CriarUsuario")]
         [AllowAnonymous]

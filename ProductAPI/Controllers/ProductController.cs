@@ -142,7 +142,18 @@ namespace ProductAPI.Controllers
 
             return NotFound();
         }
-
+        
+        /// <summary>
+        /// End point utilizado para obter produto por nome
+        /// </summary>
+        ///  <remarks>
+        ///       End point que utilizado para obter produto que contenham partes da palavra informada
+        ///  </remarks>
+        /// <returns>
+        ///     Retorna produtos com parte do nome correspondente
+        /// </returns>
+        /// <response code="200"> Retorna os produtos </response>
+        /// <response code="404"> Sem produtos para exibir </response>
         [HttpGet]
         [Route("ObterPorNome")]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorNome(string nomeDoProduto)
@@ -157,6 +168,18 @@ namespace ProductAPI.Controllers
             return NotFound();
         }
         
+        /// <summary>
+        /// End point que retorna produto por Id
+        /// </summary>
+        ///  <remarks>
+        ///       End point que retorna produto com id correspondente
+        ///  </remarks>
+        /// <returns>
+        ///     Retorna um produtos 
+        /// </returns>
+        /// <response code="200"> Retorna um produto </response>
+        /// <response code="404"> Sem produtos para exibir </response>
+        /// <returns></returns>
         [HttpGet]
         [Route("ObterPorId")]
         public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorId(Guid id)
