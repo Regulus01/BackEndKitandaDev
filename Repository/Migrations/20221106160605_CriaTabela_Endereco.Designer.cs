@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Repository.Common;
@@ -11,9 +12,10 @@ using Repository.Common;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106160605_CriaTabela_Endereco")]
+    partial class CriaTabela_Endereco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,10 +132,6 @@ namespace Repository.Migrations
                         .HasColumnType("character varying(11)")
                         .HasColumnName("Cpf");
 
-                    b.Property<Guid>("EnderecoId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("EnderecoId");
-
                     b.Property<string>("NomeCliente")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -151,9 +149,6 @@ namespace Repository.Migrations
                         .HasColumnName("UsuarioId");
 
                     b.HasKey("ClienteId");
-
-                    b.HasIndex("EnderecoId")
-                        .IsUnique();
 
                     b.HasIndex("UsuarioId")
                         .IsUnique();
@@ -260,19 +255,11 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.Entities.Usuario.Cliente", b =>
                 {
-                    b.HasOne("Domain.Entities.Usuario.Endereco", "Endereco")
-                        .WithOne("Cliente")
-                        .HasForeignKey("Domain.Entities.Usuario.Cliente", "EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.Usuario.Usuario", "Usuario")
                         .WithOne("Cliente")
                         .HasForeignKey("Domain.Entities.Usuario.Cliente", "UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Endereco");
 
                     b.Navigation("Usuario");
                 });
@@ -285,12 +272,6 @@ namespace Repository.Migrations
             modelBuilder.Entity("Domain.Entities.Produto", b =>
                 {
                     b.Navigation("Imagens");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Usuario.Endereco", b =>
-                {
-                    b.Navigation("Cliente")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario.Usuario", b =>

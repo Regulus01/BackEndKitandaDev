@@ -2,8 +2,13 @@
 
 public class Endereco
 {
-    public Guid EnderecoId { get; set; }
-    public string Bairro { get; set; }
-    public string Cep { get; set; }
-    public string Referencia { get; set; }
+    public Guid EnderecoId { get; private set; }
+    public string UF { get; private set; }
+    public string Cidade { get; private set; }
+    public string Bairro { get; private set; }
+    public string Cep { get; private set; }
+    public string Referencia { get; private set; }
+    
+    //Cliente
+    public virtual Cliente Cliente { get; private set; }
 }

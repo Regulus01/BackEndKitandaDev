@@ -36,6 +36,11 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
             .HasColumnName("UsuarioId")
             .IsRequired();
         
+        //Endereco
+        builder.Property(x => x.EnderecoId)
+            .HasColumnName("EnderecoId")
+            .IsRequired();
+        
         builder.ToTable("Cliente");
     }
 }
