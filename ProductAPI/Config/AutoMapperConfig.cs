@@ -24,7 +24,8 @@ namespace ProductAPI.Config
                 config.CreateMap<CategoriaProduto, CategoriaProdutoGridViewModel>().ReverseMap();
                 config.CreateMap<ImagemProduto, ImagemProdutoGridViewModel>().ReverseMap();
 
-                config.CreateMap<ProdutoViewModel, Produto>();
+                config.CreateMap<ProdutoViewModel, Produto>()
+                    .ForMember(p => p.Categoria, x => x.Ignore());
 
                 config.CreateMap<ClienteViewModel, Usuario>()
                     .ForMember(x => x.UserName, opt => opt.MapFrom(src => src.Usuario.UserName))
