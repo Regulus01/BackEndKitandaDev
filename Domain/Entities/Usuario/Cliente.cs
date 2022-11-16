@@ -11,9 +11,16 @@ public class Cliente
     public Guid UsuarioId { get; private set; }
     public virtual Usuario Usuario { get; private set; }
 
+    public virtual List<Produto> Produtos { get; } 
+    
     public void InformeUsuarioId(Guid usuarioId)
     {
         UsuarioId = usuarioId;
+    }
+
+    public void ComprarProduto(Produto produto)
+    {
+        Produtos.Add(produto);
     }
     
 

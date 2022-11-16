@@ -19,10 +19,10 @@ namespace Repository.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task CriarProduto(ProdutoViewModel viewModel, string categoria)
+        public async Task CriarProduto(ProdutoViewModel viewModel)
         {
             var categoriaExiste = _context.CategoriaProdutos
-                .FirstOrDefault(x => x.Nome.ToUpper().Equals(categoria.ToUpper()));
+                .FirstOrDefault(x => x.Nome.ToUpper().Equals(viewModel.Categoria.ToUpper()));
 
             if (categoriaExiste == null)
                 throw new NullReferenceException("Categoria não existe");
@@ -59,16 +59,15 @@ namespace Repository.Repositories
             return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
         }
 
-        public async Task<IEnumerable<ProdutoGridViewModel>> ObterProdutoPorId(Guid id)
+        public ProdutoGridViewModel ObterProdutoPorId(Guid id)
         {
-            var produtos = await _context.Produtos
+            var produtos = _context.Produtos
                 .Include(x => x.Categoria)
                 .Include(y => y.Imagens)
                 .OrderBy(x => x.Quantidade)
-                .Where(x => x.Id == id)
-                .ToListAsync();
-            
-            return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
+                .FirstOrDefault(x => x.Id == id);
+
+            return _mapper.Map<ProdutoGridViewModel>(produtos);
         }
         
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()

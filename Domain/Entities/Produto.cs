@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Entities.Usuario;
+
+namespace Domain.Entities
 {
     public class Produto : BaseEntity
     {
@@ -12,6 +14,8 @@
         public virtual CategoriaProduto Categoria { get; private set; }
 
         public virtual List<ImagemProduto> Imagens { get; private set; }
+        
+        public virtual List<Cliente> Clientes { get; private set; }
         
         public void AdicionarCategoriaId(Guid id)
         {

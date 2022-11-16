@@ -33,12 +33,12 @@ namespace ProductAPI.Controllers
         //[Authorize(Roles = "admin")] 
         //[FromHeader] string token
         [AllowAnonymous]
-        public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel, string categoria)
+        public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel)
         {
             if (viewModel == null)
                 return BadRequest();
 
-            await _repository.CriarProduto(viewModel, categoria);
+            await _repository.CriarProduto(viewModel);
 
             return Ok();
         }
@@ -183,16 +183,12 @@ namespace ProductAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("ObterPorId/{id:guid}")]
-        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorId(Guid id)
+        public async Task<ActionResult<ProdutoGridViewModel>> ObterPorId(Guid id)
         {
-            var produtos = await _repository.ObterProdutoPorId(id);
+            var produtos = _repository.ObterProdutoPorId(id);
             
-            if (produtos.Any())
-            {
-                return Ok(produtos);
-            }
-
-            return NotFound();
+            return Ok(produtos);
+        
         }
     }
 }
