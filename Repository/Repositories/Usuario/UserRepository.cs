@@ -59,19 +59,21 @@ namespace Repository.Repositories.User
                 .FirstOrDefault(x => x.Id == produtoId);
             
             var usuario = _context.Usuario.Include(x => x.Cliente)
+                .Include(x => x.Cliente.Produtos)
                 .FirstOrDefault(x => x.Id == usuarioGuid);
             
             if(produto != null)
-                usuario?.Cliente.ComprarProduto(produto);
-            
-            _context.SaveChangesAsync();
+                usuario.Cliente.ComprarProduto(produto);
+
+            _context.Update(usuario.Cliente.Produtos);
+            _context.SaveChanges();
         }
 
         public List<ProdutoGridViewModel> ExibirComprados(string token)
         {
             var usuarioGuid = new Guid(obterCliente(token));
             
-            var usuario = _context.Usuario.Include(x => x.Cliente)
+            var usuario = _context.Usuario.Include(x => x.Cliente).Include(x => x.Cliente.Produtos)
                 .FirstOrDefault(x => x.Id == usuarioGuid);
 
             var compras = usuario.Cliente.Produtos;

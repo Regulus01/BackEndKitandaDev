@@ -3,6 +3,7 @@ using Domain.Data.ViewModels.Criacao;
 using Interface.Repository.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProductAPI.Data.ViewModels;
 using ProductAPI.Services.Authentication;
 
 namespace ProductAPI.Controllers
@@ -90,6 +91,24 @@ namespace ProductAPI.Controllers
         {
             await _repository.CriarUsuario(usuario);
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("ComprarProduto")]
+        public async Task<ActionResult> ComprarProduto([FromHeader] Guid idProduto, [FromHeader] string token)
+        {
+            _repository.ComprarProduto(idProduto, token);
+            
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("ObterComprados")]
+        public async Task<ActionResult<ProdutoGridViewModel>> ExibirComprados([FromHeader] string token)
+        {
+            var comprados = _repository.ExibirComprados(token);
+
+            return Ok(comprados);
         }
     }
 }

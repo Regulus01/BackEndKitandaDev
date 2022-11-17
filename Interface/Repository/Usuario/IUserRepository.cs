@@ -1,5 +1,6 @@
 ﻿using Domain.Data.ViewModels.Criacao;
 using Domain.Entities.Usuario;
+using ProductAPI.Data.ViewModels;
 
 namespace Interface.Repository.User
 {
@@ -8,5 +9,6 @@ namespace Interface.Repository.User
         Usuario? GetUsuario(string username, string password);
         Task CriarUsuario(ClienteViewModel viewModel);
         void ComprarProduto(Guid produtoId, string token);
+        List<ProdutoGridViewModel> ExibirComprados(string token);
     }
 }
