@@ -1,6 +1,5 @@
 ﻿using Domain.Data.ViewModels.Criacao;
 using Domain.Entities.Usuario;
-using KitandaAPI.Data.ViewModels;
 
 namespace Interface.Repository.User
 {
@@ -8,8 +7,8 @@ namespace Interface.Repository.User
     {
         Usuario? GetUsuario(string username, string password);
         Task CriarUsuario(ClienteViewModel viewModel);
-        void ComprarProduto(Guid produtoId, string token);
-        Usuario ObterUsuarioLogado();
-        List<ProdutoGridViewModel> ExibirComprados(string token);
+        Usuario? ObterUsuarioLogado();
+        void ComprarProduto(Guid produtoId, int quantidade);
+
     }
 }

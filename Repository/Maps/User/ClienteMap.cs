@@ -56,7 +56,10 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.Referencia)
             .HasColumnName("End_Referencia")
             .IsRequired();
-        
+
+        builder.Property(x => x.ProdutosComprados)
+            .HasColumnName("Prod_Produtos");
+
         builder.ToTable("Cliente");
     }
 }

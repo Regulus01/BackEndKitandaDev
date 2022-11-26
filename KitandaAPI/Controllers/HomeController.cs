@@ -5,7 +5,6 @@ using Interface.Repository.User;
 using KitandaAPI.Services.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using KitandaAPI.Data.ViewModels;
 
 namespace KitandaAPI.Controllers
 {
@@ -13,7 +12,7 @@ namespace KitandaAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        private IUserRepository _repository;
+        private readonly IUserRepository _repository;
 
         public HomeController(IUserRepository userRepository)
         {
@@ -71,7 +70,7 @@ namespace KitandaAPI.Controllers
         [HttpGet]
         [Route("ObterUsuario")]
         [Authorize]
-        public Usuario ObterUsuarioLogado()
+        public Usuario? ObterUsuarioLogado()
         {
             return _repository.ObterUsuarioLogado();
         }
@@ -94,22 +93,24 @@ namespace KitandaAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        ///     EndPoint para o usuario logado comprar um produto
+        /// </summary>
+        ///<remarks>
+        ///     EndPoint utilizados por clientes para comprar um produto
+        /// </remarks>>
+        /// <param name="idProduto"></param>
+        /// <param name="quantidade"></param>
+        /// <returns>Sem retorno</returns>
+        ///<response code="200"> Produto comprado </response>
         [HttpPost]
         [Route("ComprarProduto")]
-        public async Task<ActionResult> ComprarProduto([FromHeader] Guid idProduto, [FromHeader] string token)
+        public async Task<ActionResult> ComprarProduto(Guid idProduto, int quantidade)
         {
-            _repository.ComprarProduto(idProduto, token);
+            _repository.ComprarProduto(idProduto, quantidade);
             
             return Ok();
         }
-
-        [HttpPost]
-        [Route("ObterComprados")]
-        public async Task<ActionResult<ProdutoGridViewModel>> ExibirComprados([FromHeader] string token)
-        {
-            var comprados = _repository.ExibirComprados(token);
-
-            return Ok(comprados);
-        }
+        
     }
 }

@@ -14,17 +14,25 @@ namespace Domain.Entities
         public virtual CategoriaProduto Categoria { get; private set; }
 
         public virtual List<ImagemProduto> Imagens { get; private set; }
-        
-        public virtual List<Cliente> Clientes { get; private set; }
-        
+
         public void AdicionarCategoriaId(Guid id)
         {
             IdCategoria = id;
         }
 
+        public void RemoverQuantidade(int quantidade)
+        {
+            Quantidade -= quantidade;
+        }
+        
         public void AdicionarImagem(ImagemProduto imagem)
         {
             Imagens.Add(imagem);
+        }
+        
+        public void InformarVenda(int quantidade)
+        {
+            QuantidadeVendida += quantidade;
         }
     }
 }

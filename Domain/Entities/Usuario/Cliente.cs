@@ -18,18 +18,18 @@ public class Cliente
     public Guid UsuarioId { get; private set; }
     public virtual Usuario Usuario { get; private set; }
     
+    public List<string>? ProdutosComprados { get; }
 
-    public virtual List<Produto> Produtos { get; } 
-    
     public void InformeUsuarioId(Guid usuarioId)
     {
         UsuarioId = usuarioId;
     }
 
-    public void ComprarProduto(Produto produto)
+    public void ComprarProduto(string produto)
     {
-        Produtos.Add(produto);
+        var prod = produto;
+        
+        if(!string.IsNullOrEmpty(produto))
+            ProdutosComprados?.Add(prod);
     }
-    
-
 }

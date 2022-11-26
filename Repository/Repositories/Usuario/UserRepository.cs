@@ -1,10 +1,8 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Data.ViewModels.Criacao;
 using Interface.Repository.User;
 using Domain.Entities.Usuario;
 using Microsoft.EntityFrameworkCore;
-using KitandaAPI.Data.ViewModels;
 using KitandaAPI.Services.Authentication;
 using Repository.Common;
 
@@ -35,32 +33,18 @@ namespace Repository.Repositories.User
             return usuarioLogin;
         }
 
-        public Usuario ObterUsuarioLogado()
+        public Usuario? ObterUsuarioLogado()
         {
             var usuarioId = AuthenticatedUser.ObterUsuarioLogado();
 
             var usuario = _context.Usuario.Include(x => x.Cliente).FirstOrDefault(x => x.Id == usuarioId);
             
-            
             return usuario;
         }
-        
-        private string ObterCliente(string tokenUsuario)
+
+        public void ComprarProduto(Guid produtoId, int quantidade)
         {
-            var tokenString = "Bearer " + tokenUsuario;
-
-            var jwtEncodedString = tokenString.Substring(7);
-
-            var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
-
-            var guidUsuario = token.Claims.First(c => c.Type == "nameid").Value;
-
-            return guidUsuario;
-        }
-
-        public void ComprarProduto(Guid produtoId, string token)
-        {
-            var usuarioGuid = new Guid(ObterCliente(token));
+            var usuario = ObterUsuarioLogado();
             
             var produto = _context.Produtos
                 .Include(x => x.Categoria)
@@ -68,27 +52,21 @@ namespace Repository.Repositories.User
                 .OrderBy(x => x.Quantidade)
                 .FirstOrDefault(x => x.Id == produtoId);
             
-            var usuario = _context.Usuario.Include(x => x.Cliente)
-                .Include(x => x.Cliente.Produtos)
-                .FirstOrDefault(x => x.Id == usuarioGuid);
-            
-            if(produto != null)
-                usuario.Cliente.ComprarProduto(produto);
+            if (produto is { Quantidade: 0 })
+            {
+                return;
+            }
 
-            _context.Update(usuario.Cliente.Produtos);
+            if (produto != null)
+            {
+                usuario.Cliente.ComprarProduto(produto.Nome);
+                produto.RemoverQuantidade(quantidade);
+                produto.InformarVenda(quantidade);
+            }
+
+            _context.Update(produto);
+            _context.Update(usuario);
             _context.SaveChanges();
-        }
-
-        public List<ProdutoGridViewModel> ExibirComprados(string token)
-        {
-            var usuarioGuid = new Guid(ObterCliente(token));
-            
-            var usuario = _context.Usuario.Include(x => x.Cliente).Include(x => x.Cliente.Produtos)
-                .FirstOrDefault(x => x.Id == usuarioGuid);
-
-            var compras = usuario.Cliente.Produtos;
-            
-            return _mapper.Map<List<ProdutoGridViewModel>>(compras);
         }
 
         public async Task CriarUsuario(ClienteViewModel viewModel)
