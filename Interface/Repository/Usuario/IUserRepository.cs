@@ -1,6 +1,6 @@
 ﻿using Domain.Data.ViewModels.Criacao;
 using Domain.Entities.Usuario;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 
 namespace Interface.Repository.User
 {

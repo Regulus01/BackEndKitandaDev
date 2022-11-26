@@ -1,11 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using AutoMapper;
 using Domain.Data.ViewModels.Criacao;
-using Domain.Entities;
 using Interface.Repository.User;
 using Domain.Entities.Usuario;
 using Microsoft.EntityFrameworkCore;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 using Repository.Common;
 
 namespace Repository.Repositories.User
