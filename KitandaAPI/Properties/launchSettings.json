@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "ProductAPI": {
+    "KitandaAPI": {
       "commandName": "Project",
       "launchUrl": "swagger",
       "environmentVariables": {

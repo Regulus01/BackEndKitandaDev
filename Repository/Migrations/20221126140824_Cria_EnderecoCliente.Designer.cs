@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Repository.Common;
@@ -11,9 +12,10 @@ using Repository.Common;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221126140824_Cria_EnderecoCliente")]
+    partial class Cria_EnderecoCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("ClienteProduto", b =>
-                {
-                    b.Property<Guid>("ClientesClienteId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProdutosId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ClientesClienteId", "ProdutosId");
-
-                    b.HasIndex("ProdutosId");
-
-                    b.ToTable("ClienteProduto");
-                });
 
             modelBuilder.Entity("Domain.Entities.CategoriaProduto", b =>
                 {
@@ -225,21 +212,6 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario", (string)null);
-                });
-
-            modelBuilder.Entity("ClienteProduto", b =>
-                {
-                    b.HasOne("Domain.Entities.Usuario.Cliente", null)
-                        .WithMany()
-                        .HasForeignKey("ClientesClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Produto", null)
-                        .WithMany()
-                        .HasForeignKey("ProdutosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.ImagemProduto", b =>

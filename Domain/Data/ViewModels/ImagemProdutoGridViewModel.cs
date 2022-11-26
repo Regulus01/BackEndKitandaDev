@@ -1,4 +1,4 @@
-﻿namespace ProductAPI.Data.ViewModels
+﻿namespace KitandaAPI.Data.ViewModels
 {
     public class ImagemProdutoGridViewModel
     {

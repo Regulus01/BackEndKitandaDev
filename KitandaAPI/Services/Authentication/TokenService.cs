@@ -1,11 +1,11 @@
 ﻿using Domain.Entities.Usuario;               
 using Microsoft.IdentityModel.Tokens;
-using ProductAPI.Config.Jwt;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using KitandaAPI.Config.Jwt;
 
-namespace ProductAPI.Services.Authentication
+namespace KitandaAPI.Services.Authentication
 {
     public static class TokenService
     {

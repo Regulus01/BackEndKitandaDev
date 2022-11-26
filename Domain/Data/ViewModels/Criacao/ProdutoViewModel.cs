@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 
 namespace Domain.Data.ViewModels.Criacao;
 

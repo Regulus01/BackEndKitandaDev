@@ -4,7 +4,7 @@ using Interface.Repository.User;
 using Repository.Repositories;
 using Repository.Repositories.User;
 
-namespace ProductAPI.DependencyInjection
+namespace KitandaAPI.DependencyInjection
 {
     public class DependencyInjection
     {

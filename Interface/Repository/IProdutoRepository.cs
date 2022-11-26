@@ -1,5 +1,5 @@
 ﻿using Domain.Data.ViewModels.Criacao;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 
 namespace Interface.Repository
 {

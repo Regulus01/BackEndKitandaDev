@@ -2,9 +2,9 @@
 using Interface.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 
-namespace ProductAPI.Controllers
+namespace KitandaAPI.Controllers
 {
     [Route("api/Produto")]
     [ApiController]

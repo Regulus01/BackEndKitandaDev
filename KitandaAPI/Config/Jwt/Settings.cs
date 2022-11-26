@@ -1,4 +1,4 @@
-﻿namespace ProductAPI.Config.Jwt
+﻿namespace KitandaAPI.Config.Jwt
 {
     public static class Settings
     {
