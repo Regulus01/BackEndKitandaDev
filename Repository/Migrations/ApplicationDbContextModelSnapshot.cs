@@ -124,15 +124,26 @@ namespace Repository.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("Cliente_Id");
 
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Bairro");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Cep");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Cidade");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("Cpf");
-
-                    b.Property<Guid>("EnderecoId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("EnderecoId");
 
                     b.Property<string>("NomeCliente")
                         .IsRequired()
@@ -140,11 +151,21 @@ namespace Repository.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("NomeCliente");
 
+                    b.Property<string>("Referencia")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Referencia");
+
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("Telefone");
+
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_UF");
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uuid")
@@ -152,55 +173,10 @@ namespace Repository.Migrations
 
                     b.HasKey("ClienteId");
 
-                    b.HasIndex("EnderecoId")
-                        .IsUnique();
-
                     b.HasIndex("UsuarioId")
                         .IsUnique();
 
                     b.ToTable("Cliente", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Usuario.Endereco", b =>
-                {
-                    b.Property<Guid>("EnderecoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("EnderecoId");
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("Bairro");
-
-                    b.Property<string>("Cep")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)")
-                        .HasColumnName("Cep");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("Cidade");
-
-                    b.Property<string>("Referencia")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("Referencia");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("character varying(2)")
-                        .HasColumnName("UF");
-
-                    b.HasKey("EnderecoId");
-
-                    b.ToTable("Endereco", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario.Usuario", b =>
@@ -260,19 +236,11 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.Entities.Usuario.Cliente", b =>
                 {
-                    b.HasOne("Domain.Entities.Usuario.Endereco", "Endereco")
-                        .WithOne("Cliente")
-                        .HasForeignKey("Domain.Entities.Usuario.Cliente", "EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.Usuario.Usuario", "Usuario")
                         .WithOne("Cliente")
                         .HasForeignKey("Domain.Entities.Usuario.Cliente", "UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Endereco");
 
                     b.Navigation("Usuario");
                 });
@@ -285,12 +253,6 @@ namespace Repository.Migrations
             modelBuilder.Entity("Domain.Entities.Produto", b =>
                 {
                     b.Navigation("Imagens");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Usuario.Endereco", b =>
-                {
-                    b.Navigation("Cliente")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario.Usuario", b =>

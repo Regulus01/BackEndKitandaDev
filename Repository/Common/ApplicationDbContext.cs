@@ -22,8 +22,7 @@ namespace Repository.Common
             modelBuilder.ApplyConfiguration(new ProdutoMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new ClienteMap());
-            modelBuilder.ApplyConfiguration(new EnderecoMap());
-          
+
         }
 
         public ApplicationDbContext()

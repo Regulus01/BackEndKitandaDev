@@ -12,8 +12,8 @@ using Repository.Common;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106160605_CriaTabela_Endereco")]
-    partial class CriaTabela_Endereco
+    [Migration("20221126140824_Cria_EnderecoCliente")]
+    partial class Cria_EnderecoCliente
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -126,6 +126,21 @@ namespace Repository.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("Cliente_Id");
 
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Bairro");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Cep");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Cidade");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -138,11 +153,21 @@ namespace Repository.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("NomeCliente");
 
+                    b.Property<string>("Referencia")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_Referencia");
+
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("Telefone");
+
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("End_UF");
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uuid")
@@ -154,48 +179,6 @@ namespace Repository.Migrations
                         .IsUnique();
 
                     b.ToTable("Cliente", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Usuario.Endereco", b =>
-                {
-                    b.Property<Guid>("EnderecoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("EnderecoId");
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("Bairro");
-
-                    b.Property<string>("Cep")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)")
-                        .HasColumnName("Cep");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("Cidade");
-
-                    b.Property<string>("Referencia")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("Referencia");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("character varying(2)")
-                        .HasColumnName("UF");
-
-                    b.HasKey("EnderecoId");
-
-                    b.ToTable("Endereco", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario.Usuario", b =>
