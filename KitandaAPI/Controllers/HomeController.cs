@@ -1,11 +1,11 @@
 ﻿using Domain.Data.ViewModels;
 using Domain.Data.ViewModels.Criacao;
 using Interface.Repository.User;
+using KitandaAPI.Services.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductAPI.Services.Authentication;
 
-namespace ProductAPI.Controllers
+namespace KitandaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

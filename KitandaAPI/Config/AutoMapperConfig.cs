@@ -2,9 +2,9 @@
 using Domain.Data.ViewModels.Criacao;
 using Domain.Entities;
 using Domain.Entities.Usuario;
-using ProductAPI.Data.ViewModels;
+using KitandaAPI.Data.ViewModels;
 
-namespace ProductAPI.Config
+namespace KitandaAPI.Config
 {
     public class AutoMapperConfig
     {
