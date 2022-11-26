@@ -1,5 +1,6 @@
 ﻿using Domain.Data.ViewModels;
 using Domain.Data.ViewModels.Criacao;
+using Domain.Entities.Usuario;
 using Interface.Repository.User;
 using KitandaAPI.Services.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -59,20 +60,20 @@ namespace KitandaAPI.Controllers
         }
         
         /// <summary>
-        /// EndPoint que obtem o nome do usuário logado
+        /// EndPoint que obtem o dados do cliente logado
         /// </summary>
         ///  <remarks>
-        ///       End point que retorna o nome do usuário logado na aplicação
+        ///       End point que retorna os dados do cliente logado
         ///  </remarks>
-        /// <returns>Nome do usuário logado</returns>
+        ///<returns>Nome e endereco do usuário logado</returns>
         ///<response code="200"> Usuário está logado </response>
         ///<response code="401"> Não autenticado </response>
         [HttpGet]
-        [Route("authenticated")]
+        [Route("ObterUsuario")]
         [Authorize]
-        public string Authenticated()
+        public Usuario ObterUsuarioLogado()
         {
-            return String.Format("Autenticado - {0}", User.Identity.Name);
+            return _repository.ObterUsuarioLogado();
         }
 
         /// <summary>

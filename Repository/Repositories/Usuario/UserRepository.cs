@@ -5,6 +5,7 @@ using Interface.Repository.User;
 using Domain.Entities.Usuario;
 using Microsoft.EntityFrameworkCore;
 using KitandaAPI.Data.ViewModels;
+using KitandaAPI.Services.Authentication;
 using Repository.Common;
 
 namespace Repository.Repositories.User
@@ -34,7 +35,17 @@ namespace Repository.Repositories.User
             return usuarioLogin;
         }
 
-        private string obterCliente(string tokenUsuario)
+        public Usuario ObterUsuarioLogado()
+        {
+            var usuarioId = AuthenticatedUser.ObterUsuarioLogado();
+
+            var usuario = _context.Usuario.Include(x => x.Cliente).FirstOrDefault(x => x.Id == usuarioId);
+            
+            
+            return usuario;
+        }
+        
+        private string ObterCliente(string tokenUsuario)
         {
             var tokenString = "Bearer " + tokenUsuario;
 
@@ -49,7 +60,7 @@ namespace Repository.Repositories.User
 
         public void ComprarProduto(Guid produtoId, string token)
         {
-            var usuarioGuid = new Guid(obterCliente(token));
+            var usuarioGuid = new Guid(ObterCliente(token));
             
             var produto = _context.Produtos
                 .Include(x => x.Categoria)
@@ -70,7 +81,7 @@ namespace Repository.Repositories.User
 
         public List<ProdutoGridViewModel> ExibirComprados(string token)
         {
-            var usuarioGuid = new Guid(obterCliente(token));
+            var usuarioGuid = new Guid(ObterCliente(token));
             
             var usuario = _context.Usuario.Include(x => x.Cliente).Include(x => x.Cliente.Produtos)
                 .FirstOrDefault(x => x.Id == usuarioGuid);

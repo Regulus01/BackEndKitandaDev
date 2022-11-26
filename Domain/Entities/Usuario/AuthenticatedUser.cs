@@ -1,22 +1,11 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
+﻿namespace KitandaAPI.Services.Authentication;
 
-namespace Domain.Entities.Usuario;
-
-public class AuthenticatedUser
+public static class AuthenticatedUser
 {
-    private readonly IHttpContextAccessor _accessor;
+    public static Guid UserId { get; set; }
 
-    public AuthenticatedUser(IHttpContextAccessor accessor)
+    public static Guid ObterUsuarioLogado()
     {
-        _accessor = accessor;
-    }
-
-    public string Email => _accessor.HttpContext.User.Identity.Name;
-    public string Name => GetClaimsIdentity().FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier)?.Value;
-
-    public IEnumerable<Claim> GetClaimsIdentity()
-    {
-        return _accessor.HttpContext.User.Claims;
+        return UserId;
     }
 }

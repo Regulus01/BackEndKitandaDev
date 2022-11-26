@@ -9,6 +9,8 @@ namespace KitandaAPI.Services.Authentication
 {
     public static class TokenService
     {
+        public static Guid _accessor { get; set; }
+
         public static string GenerateToken(Usuario user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -25,6 +27,7 @@ namespace KitandaAPI.Services.Authentication
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            AuthenticatedUser.UserId = user.Id;
             return tokenHandler.WriteToken(token);
         }
     }
