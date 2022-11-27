@@ -4,6 +4,7 @@
 * O projeto se trata de uma loja virtual onde é possivel realizar compras, 
   postar novos produtos, criar usuários etc.
 * Para acessar o front do projeto [Clique aqui](https://github.com/yuri3476/FrontEndKitandaDev).
+* A api se encontra hospedada na Azure.
 * Para acessar acessar a API clique [Clique aqui](https://ikitandaapi.azurewebsites.net/swagger/index.html).
 
 ## Swagger da API
@@ -28,10 +29,11 @@
 <td>Banco: Postgress</td>
 <td>Autenticao JWT</td>
 <td>Entity Framework</td>
+<td>Azure app service</td>
    <tr>
       <td> 6 </td>
       <td> * </td>
       <td> * </td>
       <td> * </td>
-
+      <td> * </td>
 </table>
