@@ -15,17 +15,14 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
 
         builder.Property(x => x.NomeCliente)
             .HasColumnName("NomeCliente")
-            .HasMaxLength(50)
             .IsRequired();
         
         builder.Property(x => x.Telefone)
             .HasColumnName("Telefone")
-            .HasMaxLength(11)
             .IsRequired();
 
         builder.Property(x => x.Cpf)
             .HasColumnName("Cpf")
-            .HasMaxLength(11)
             .IsRequired();
 
         builder.Property(x => x.ClienteId)
