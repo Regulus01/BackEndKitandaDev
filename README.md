@@ -8,7 +8,8 @@
 
 ## Swagger da API
 
-![img.png](img.png)
+![image](https://user-images.githubusercontent.com/75454584/204114649-8ede2b26-2636-4ee6-bdd1-8cdc31df9a86.png)
+
 
 ## Sobre o banco de dados
 
@@ -16,7 +17,8 @@
 * O banco de dados foi criado a partir da modalidade Code-First do entity framework
 * O banco é mapeado utilizando Fluent API
 
-![img_1.png](img_1.png)
+![image](https://user-images.githubusercontent.com/75454584/204114653-4db96fc3-a072-40cc-898c-e4bbb566ed0c.png)
+
 
 ## Tecnologias Usadas
 
