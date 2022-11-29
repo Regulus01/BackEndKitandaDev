@@ -32,7 +32,6 @@ namespace KitandaAPI.Controllers
         [HttpPost]
         [Authorize(Roles = "admin")] 
         //[FromHeader] string token
-        [AllowAnonymous]
         public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel)
         {
             if (viewModel == null)
