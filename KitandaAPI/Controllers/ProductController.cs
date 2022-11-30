@@ -30,7 +30,7 @@ namespace KitandaAPI.Controllers
         /// <response code="200"> Produto inserido no banco </response>
         /// <response code="401"> Não autorizado </response>
         [HttpPost]
-        [Authorize(Roles = "admin")] 
+        //[Authorize(Roles = "admin")] 
         //[FromHeader] string token
         public async Task<ActionResult<ProdutoViewModel>> CriarProduto([FromBody] ProdutoViewModel? viewModel)
         {
