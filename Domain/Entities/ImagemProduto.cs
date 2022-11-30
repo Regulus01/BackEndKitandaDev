@@ -11,7 +11,7 @@
         public void CriarImagemProdutoSemFoto()
         {
             Nome = "Principal";
-            LinkImagem = "https://www.inovegas.com.br/site/wp-content/uploads/2017/08/sem-foto.jpg";
+            LinkImagem = "https://www.bstest.com.br/wp-content/uploads/2019/09/produto-sem-imagem-1000x1000.jpg";
         }
 
         public void InformeIdProduto(Guid idProduto)
