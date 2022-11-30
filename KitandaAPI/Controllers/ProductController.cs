@@ -182,9 +182,9 @@ namespace KitandaAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("ObterPorId/{id:guid}")]
-        public async Task<ActionResult<ProdutoGridViewModel>> ObterPorId(Guid id)
+        public async Task<ActionResult<IEnumerable<ProdutoGridViewModel>>> ObterPorId(Guid id)
         {
-            var produtos = _repository.ObterProdutoPorId(id);
+            var produtos = await _repository.ObterProdutoPorId(id);
             
             return Ok(produtos);
         

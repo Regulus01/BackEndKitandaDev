@@ -59,15 +59,16 @@ namespace Repository.Repositories
             return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
         }
 
-        public ProdutoGridViewModel ObterProdutoPorId(Guid id)
+        public async Task<IEnumerable<ProdutoGridViewModel>> ObterProdutoPorId(Guid id)
         {
-            var produtos = _context.Produtos
+            var produtos = await _context.Produtos
                 .Include(x => x.Categoria)
                 .Include(y => y.Imagens)
                 .OrderBy(x => x.Quantidade)
-                .FirstOrDefault(x => x.Id == id);
+                .Where(x => x.Id.Equals(id))
+                .ToListAsync();
 
-            return _mapper.Map<ProdutoGridViewModel>(produtos);
+            return _mapper.Map<List<ProdutoGridViewModel>>(produtos);
         }
         
         public async Task<IEnumerable<ProdutoGridViewModel>> GetAll()
